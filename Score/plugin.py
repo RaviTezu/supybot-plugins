@@ -48,7 +48,7 @@ class Score(callbacks.Plugin):
         matchs = code.mchdata.findAll("match")
         for i in matchs:
             j = str(i)
-            if "IND" in j:
+            if "IND" in j: #Change this to your country :)
                 content = BeautifulSoup(j)
         mchDesc = content.match.get('mchdesc')
         vcity = content.match.get('vcity') 
