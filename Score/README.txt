@@ -1,4 +1,4 @@
-This for "Cricket" lovers. This plugins gets your the latest score.
+This is for "Cricket" lovers. This plugin can get you the latest cricket score.
 
 Plugin Requirements:
    1. urllib2 python module.
