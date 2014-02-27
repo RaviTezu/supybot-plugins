@@ -1,0 +1,2 @@
+feedparser
+bitly_api

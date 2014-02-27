@@ -6,7 +6,8 @@ This plugins requires:
     2. bitly_api python module.
     3. bitly api account.
 
-- feedparser and bitly_api modules can be installed using "pip". 
+
+- feedparser and bitly_api modules can be installed using "pip": `pip install  -r requirements.txt`
 - Replace the <username> and <password> (in plugin.py) with your bitly api account credentials. 
 - bityl has been used in this plugin to shrink the news URLS.
 - clone/copy this News directory to the pulgins directory of your supybot and load it using "@load News"(This has to be done in the chat channel or Private message your bot) command. For more details: http://supybook.fealdia.org/devel/
