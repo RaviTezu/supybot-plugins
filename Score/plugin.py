@@ -48,28 +48,34 @@ class Score(callbacks.Plugin):
         matchs = code.mchdata.findAll("match")
         for i in matchs:
             j = str(i)
-            if "IND" in j: #Change this to your country :)
+            if "IND" in j and not "INDU19" in j:
                 content = BeautifulSoup(j)
         mchDesc = content.match.get('mchdesc')
         vcity = content.match.get('vcity') 
         vcountry = content.match.get('vcountry')
         grnd = content.match.get('grnd')
         status = content.state.get('mchstate')
-        str1 = str(mchDesc)+" - " +str(grnd)+ " - "+ str(vcity) + " - " + str(vcountry) +" - "+ str(status)
-        irc.reply(str1)
-        btTm = content.mscr.inngsdetail.bttm.get('sname')
-        runs = content.mscr.inngsdetail.bttm.inngs.get('r')
-        overs = content.mscr.inngsdetail.bttm.inngs.get('ovrs')
-        wkts = content.mscr.inngsdetail.bttm.inngs.get('wkts')
-        str2 = str(btTm) + ": " + str(runs) + "/" +str(wkts) +" Overs: " + str(overs)
-        irc.reply(str2)
-        blgTm = content.mscr.inngsdetail.blgtm.get('sname')
-        if content.mscr.inngsdetail.blgtm.inngs:
-            runs2 = content.mscr.inngsdetail.blgtm.inngs.get('r')
-            overs2 = content.mscr.inngsdetail.blgtm.inngs.get('ovrs')
-            wkts2 = content.mscr.inngsdetail.blgtm.inngs.get('wkts')
-            str3 = str(blgTm) + ": " + str(runs2) + "/" +str(wkts) +" Overs: " + str(overs2)
-            irc.reply(str3)
+        if status == "inprogress":
+            str1 = str(mchDesc)+" - " +str(grnd)+ " - "+ str(vcity) + " - " + str(vcountry) +" - "+ str(status)
+            irc.reply(str1)
+            if content.mscr.inngsdetail.bttm.inngs:
+                btTm = content.mscr.inngsdetail.bttm.get('sname')
+                runs = content.mscr.inngsdetail.bttm.inngs.get('r')
+                overs = content.mscr.inngsdetail.bttm.inngs.get('ovrs')
+                wkts = content.mscr.inngsdetail.bttm.inngs.get('wkts')
+                str2 = str(btTm) + ": " + str(runs) + "/" +str(wkts) +" Overs: " + str(overs)
+                irc.reply(str2)
+            if content.mscr.inngsdetail.blgtm.inngs:
+                blgTm = content.mscr.inngsdetail.blgtm.get('sname')
+                runs2 = content.mscr.inngsdetail.blgtm.inngs.get('r')
+                overs2 = content.mscr.inngsdetail.blgtm.inngs.get('ovrs')
+                wkts2 = content.mscr.inngsdetail.blgtm.inngs.get('wkts')
+                str3 = str(blgTm) + ": " + str(runs2) + "/" +str(wkts) +" Overs: " + str(overs2)
+                irc.reply(str3)
+        else:
+            result =  content.state.get('status')
+            str4 = str(mchDesc) + " - "+ "Status: "+ str(status)+" - " +"Result: " +str(result)
+            irc.reply(str4)
         
 Class = Score
 
